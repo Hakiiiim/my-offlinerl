@@ -1,11 +1,16 @@
 import torch
 from offlinerl.utils.exp import select_free_cuda
+import os
 
 task = "Hopper-v3"
 task_data_type = "low"
 task_train_num = 99
 
-seed = 42 
+seed = 42
+
+aim_path = "//home/abenechehab/my-offlinerl/combo_original/" + str(seed) + "/"
+if not os.path.exists(aim_path):
+    os.makedirs(aim_path)
 
 device = 'cuda'+":"+str(select_free_cuda()) if torch.cuda.is_available() else 'cpu'
 obs_shape = None
@@ -37,8 +42,8 @@ discount = 0.99
 soft_target_tau = 5e-3
 
 num_samples = 10
-learnable_beta = False
-base_beta = 0.5
+learnable_beta = True
+base_beta = 1.0
 lagrange_thresh = 5
 with_important_sampling = True
 
