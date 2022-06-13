@@ -1,5 +1,4 @@
 import gym
-import neorl
 
 
 def get_env(task):
@@ -14,6 +13,7 @@ def get_env(task):
             import d4rl
             env = gym.make(task[5:])
         else:
+            import neorl
             task_name = task.strip().split("-")[0]
             env = neorl.make(task_name)
     except:
