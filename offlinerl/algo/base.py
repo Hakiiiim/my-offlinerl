@@ -26,7 +26,10 @@ class BaseAlgo(ABC):
         
         self.repo = repo
         self.exp_logger = init_exp_logger(repo = repo, experiment_name = exp_name)
-        self.index_path = self.exp_logger.repo.index_path
+
+        # self.index_path = self.exp_logger.repo.index_path
+        self.index_path = args["aim_path"]
+
         self.models_save_dir = os.path.join(self.index_path, "models")
         self.metric_logs = OrderedDict()
         self.metric_logs_path = os.path.join(self.index_path, "metric_logs.json")
